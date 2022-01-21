@@ -1,0 +1,466 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Mobility Garage Gateway",
+    "description" : "This API is used to integrate garage software provider with JAROWA ENAB.LE platform via a gateway.",
+    "version" : "1.0"
+  },
+  "paths" : {
+    "/api/v1/CaseData" : {
+      "post" : {
+        "tags" : [ "CaseDataStore" ],
+        "summary" : "Stores all information into a local memory storage by the key CaseData.Id.",
+        "requestBody" : {
+          "description" : "prefilling data passed from garage software provider.",
+          "content" : {
+            "application/json-patch+json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Enable.Plugin.Mobility.Garage.Models.Case"
+              }
+            },
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Enable.Plugin.Mobility.Garage.Models.Case"
+              }
+            },
+            "text/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Enable.Plugin.Mobility.Garage.Models.Case"
+              }
+            },
+            "application/*+json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Enable.Plugin.Mobility.Garage.Models.Case"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "if the data is successfully stored."
+          },
+          "500" : {
+            "description" : "if any other error occures."
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Enable.Plugin.Mobility.Garage.Models.Address" : {
+        "type" : "object",
+        "properties" : {
+          "Country" : {
+            "type" : "string",
+            "description" : "Gets or sets Country. ISO-2-letter short form.",
+            "nullable" : true
+          },
+          "State" : {
+            "type" : "string",
+            "description" : "Gets or sets Kanton.",
+            "nullable" : true
+          },
+          "City" : {
+            "type" : "string",
+            "description" : "Gets or sets City.",
+            "nullable" : true
+          },
+          "Street" : {
+            "type" : "string",
+            "description" : "Gets or sets Street.",
+            "nullable" : true
+          },
+          "HouseNr" : {
+            "type" : "string",
+            "description" : "Gets or sets House Number.",
+            "nullable" : true
+          },
+          "Zip" : {
+            "type" : "string",
+            "description" : "Gets or sets zip code.",
+            "nullable" : true
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "Party address which has the following sub fields."
+      },
+      "Enable.Plugin.Mobility.Garage.Models.Party" : {
+        "required" : [ "PartnerRole" ],
+        "type" : "object",
+        "properties" : {
+          "PartnerRole" : {
+            "type" : "string",
+            "description" : "Gets or sets the Role of the party in the case. Default value is 'Customer'.",
+            "default" : "Customer"
+          },
+          "PartnerType" : {
+            "type" : "string",
+            "description" : "Gets or sets the Party type.",
+            "default" : "Person",
+            "nullable" : true
+          },
+          "PartnerTitle" : {
+            "type" : "string",
+            "description" : "Gets or sets the party gender if the party is a Person otherwise empty.",
+            "nullable" : true
+          },
+          "CompanyName" : {
+            "type" : "string",
+            "description" : "Gets or sets the Name of the company if the party is a company otherwise empty.",
+            "nullable" : true
+          },
+          "FirstName" : {
+            "type" : "string",
+            "description" : "Gets or sets the First name of the party if the party is a Person.",
+            "nullable" : true
+          },
+          "LastName" : {
+            "type" : "string",
+            "description" : "Gets or sets the Last name of the party if the party is a Person.",
+            "nullable" : true
+          },
+          "Phone" : {
+            "type" : "string",
+            "description" : "Gets or sets the Party Phone number.",
+            "nullable" : true
+          },
+          "Mobile" : {
+            "type" : "string",
+            "description" : "gets or sets the Party Mobile number.",
+            "nullable" : true
+          },
+          "Email" : {
+            "type" : "string",
+            "description" : "Gets or sets the Party E-Mail.",
+            "nullable" : true
+          },
+          "Birthday" : {
+            "type" : "string",
+            "description" : "Gets or sets the Party date of birth if the party is a Person. Format 'dd.mm.yyyy'.",
+            "nullable" : true
+          },
+          "Nationality" : {
+            "type" : "string",
+            "description" : "Gets or sets the Nationality of the party if the party is a Person.",
+            "nullable" : true
+          },
+          "SocialSecurityNumber" : {
+            "type" : "string",
+            "description" : "Gets or sets the Social security number (AHV Nr) of the party if the party is a Person, (format xxx.xxxx.xxxx.xx).",
+            "nullable" : true
+          },
+          "Address" : {
+            "$ref" : "#/components/schemas/Enable.Plugin.Mobility.Garage.Models.Address"
+          },
+          "PreferredLanguage" : {
+            "type" : "string",
+            "description" : "Gets or sets the Communication Language. default \"de-CH\".",
+            "default" : "de-CH",
+            "nullable" : true
+          },
+          "Availability" : {
+            "type" : "string",
+            "description" : "Gets or sets the Party Contact restrictions.",
+            "nullable" : true
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "is an involved party in a certain role and type."
+      },
+      "Enable.Plugin.Mobility.Garage.Models.CaseSpecificData" : {
+        "type" : "object",
+        "properties" : {
+          "DamageAddress" : {
+            "$ref" : "#/components/schemas/Enable.Plugin.Mobility.Garage.Models.Address"
+          },
+          "DamagedObjects" : {
+            "type" : "string",
+            "description" : "Gets or sets What has been damaged.",
+            "nullable" : true
+          },
+          "InsuredValue" : {
+            "type" : "number",
+            "description" : "Gets or sets Insured value of the damaged object.",
+            "format" : "double",
+            "nullable" : true
+          },
+          "InsuredValueCurrency" : {
+            "type" : "string",
+            "description" : "Gets or sets Insured value currency.",
+            "nullable" : true
+          },
+          "IncidentDate" : {
+            "type" : "string",
+            "description" : "Gets or sets When did that happen? (with format dd.mm.yyyy).",
+            "nullable" : true
+          },
+          "WorkorderScopeDescription" : {
+            "type" : "string",
+            "description" : "Gets or sets Scope of the work order.",
+            "nullable" : true
+          },
+          "ReportLanguage" : {
+            "type" : "string",
+            "description" : "Gets or sets language of the report.",
+            "nullable" : true
+          },
+          "ReportDueDate" : {
+            "type" : "string",
+            "description" : "Gets or sets due date of report.",
+            "nullable" : true
+          },
+          "CaseRemarks" : {
+            "type" : "string",
+            "description" : "Gets or sets remarks to a case.",
+            "nullable" : true
+          },
+          "NumberPlate" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "CarBrand" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "CarModel" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "Mileage" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "FirstUsage" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "RegistrationNumber" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "Transmission" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "DriveType" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "BookValue" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "TimeValue" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "FaultBy" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "RequestedDelivery" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "CoverageClarification" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "AdditionalServicesBringPickupService" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "BringPickupServicePickupLocation" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "AdditionalServicesReplacementCar" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "SpecialInstructions" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "DiscussionRequired" : {
+            "type" : "string",
+            "nullable" : true
+          },
+          "LeasingContractEndDate" : {
+            "type" : "string",
+            "nullable" : true
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "Case specific data model."
+      },
+      "Enable.Plugin.Mobility.Garage.Models.Payment" : {
+        "type" : "object",
+        "properties" : {
+          "ExpenseCap" : {
+            "type" : "number",
+            "description" : "Gets or sets Expence limit to be set (Kostendach).",
+            "format" : "double",
+            "nullable" : true
+          },
+          "ExpenseCapCurrency" : {
+            "type" : "string",
+            "description" : "Gets or sets Expense limit currency.",
+            "nullable" : true
+          },
+          "Deductible" : {
+            "type" : "string",
+            "description" : "Gets or sets Is there a deductable to client (Selbstbehalt?).",
+            "nullable" : true
+          },
+          "DeductibleAmount" : {
+            "type" : "string",
+            "description" : "Gets or sets deductable amount.",
+            "nullable" : true
+          },
+          "DeductibleAmountCurrency" : {
+            "type" : "string",
+            "description" : "Gets or sets deductable currency.",
+            "nullable" : true
+          },
+          "VatPayment" : {
+            "type" : "string",
+            "description" : "Gets or sets Who should pay the VAT? Customer or Insurance.",
+            "default" : "Insurance",
+            "nullable" : true
+          },
+          "PaymentRemarks" : {
+            "type" : "string",
+            "description" : "Gets or sets some PaymentRemarks as information.",
+            "nullable" : true
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "Payment information."
+      },
+      "Enable.Plugin.Mobility.Garage.Models.Principal" : {
+        "type" : "object",
+        "properties" : {
+          "accountId" : {
+            "type" : "string",
+            "description" : "Gets or sets principle account id.",
+            "nullable" : true
+          },
+          "associateId" : {
+            "type" : "string",
+            "description" : "Gets or sets associate id.",
+            "nullable" : true
+          },
+          "userId" : {
+            "type" : "string",
+            "description" : "Gets or sets user id.",
+            "nullable" : true
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "All principle information to save / create WO automatically."
+      },
+      "Enable.Plugin.Mobility.Garage.Models.Provider" : {
+        "type" : "object",
+        "properties" : {
+          "accountId" : {
+            "type" : "string",
+            "description" : "Gets or sets provider account id.",
+            "nullable" : true
+          },
+          "associateId" : {
+            "type" : "string",
+            "description" : "Gets or sets associate id.",
+            "nullable" : true
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "All provider reference information."
+      },
+      "Enable.Plugin.Mobility.Garage.Models.Document" : {
+        "type" : "object",
+        "properties" : {
+          "title" : {
+            "type" : "string",
+            "description" : "Gets or sets document title including extension.",
+            "nullable" : true
+          },
+          "extension" : {
+            "type" : "string",
+            "description" : "Gets or sets document extension according the specification.",
+            "nullable" : true
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "Gets or sets valid document type according the specification.",
+            "nullable" : true
+          },
+          "contentBase64" : {
+            "type" : "string",
+            "description" : "Gets or sets contentn of document in base64 encoded form (without new line).",
+            "nullable" : true
+          }
+        },
+        "additionalProperties" : false
+      },
+      "Enable.Plugin.Mobility.Garage.Models.Case" : {
+        "required" : [ "CaseId", "Casetype", "TechnicalID" ],
+        "type" : "object",
+        "properties" : {
+          "TechnicalID" : {
+            "type" : "string",
+            "description" : "Gets or sets a unique identifier for the case data record (UUID)."
+          },
+          "CaseId" : {
+            "type" : "string",
+            "description" : "Gets or sets claim's data Id (schaden nr. or any other no)."
+          },
+          "Casetype" : {
+            "type" : "string",
+            "description" : "Gets or sets logical identier of the case type for mapping.\r\nLawyer\r\nKTG\r\nUVG\r\nSACH\r\nHAFT\r\nCraftsman\r\nPropertyExpert\r\nGarage\r\nDoctorRiskValidation."
+          },
+          "Description" : {
+            "type" : "string",
+            "description" : "Gets or sets short description of the Case.",
+            "nullable" : true
+          },
+          "Parties" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Enable.Plugin.Mobility.Garage.Models.Party"
+            },
+            "description" : "Gets or sets a collection of all involved parties.",
+            "nullable" : true
+          },
+          "SpecificCaseData" : {
+            "$ref" : "#/components/schemas/Enable.Plugin.Mobility.Garage.Models.CaseSpecificData"
+          },
+          "PaymentData" : {
+            "$ref" : "#/components/schemas/Enable.Plugin.Mobility.Garage.Models.Payment"
+          },
+          "Principal" : {
+            "$ref" : "#/components/schemas/Enable.Plugin.Mobility.Garage.Models.Principal"
+          },
+          "Provider" : {
+            "$ref" : "#/components/schemas/Enable.Plugin.Mobility.Garage.Models.Provider"
+          },
+          "ServiceDescriptionId" : {
+            "type" : "string",
+            "description" : "Gets or sets service description of WOHP to create.",
+            "nullable" : true
+          },
+          "Documents" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Enable.Plugin.Mobility.Garage.Models.Document"
+            },
+            "description" : "Gets or sets collection of Documents.",
+            "nullable" : true
+          }
+        },
+        "additionalProperties" : false
+      }
+    }
+  }
+}

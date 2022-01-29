@@ -1,12 +1,10 @@
 {
   "openapi" : "3.0.1",
   "info" : {
-    "title" : "Enable Integration Gateway API",
+    "title" : "Mobility Garage Gateway API",
+    "description" : "This API is used to integrate garage software provider with JAROWA ENAB.LE platform via a gateway.",
     "version" : "1.0"
   },
-  "servers" : [ {
-    "url" : "/garage"
-  } ],
   "paths" : {
     "/api/v1/CaseData" : {
       "post" : {
@@ -15,7 +13,7 @@
         "requestBody" : {
           "description" : "prefilling data passed from AXA.",
           "content" : {
-            "application/json-patch_json" : {
+            "application/json-patch+json" : {
               "schema" : {
                 "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.Case"
               }
@@ -30,7 +28,7 @@
                 "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.Case"
               }
             },
-            "application/*_json" : {
+            "application/*+json" : {
               "schema" : {
                 "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.Case"
               }
@@ -50,6 +48,70 @@
   },
   "components" : {
     "schemas" : {
+      "Enable.MobilityGarage.Plugin.Enums.CaseTypeEnum" : {
+        "enum" : [ "Lawyer", "DailySickPayment", "DoctorAccident", "Property", "DoctorLiability", "Craftsman", "PropertyExpert", "Garage", "DoctorRiskValidation" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.ContainerEnum" : {
+        "enum" : [ "CaseDocuments", "OfferDocuments", "GarageDamageDocuments", "CreditDocuments", "InvoiceDocuments", "ExpenseCapDocuments", "CancelDocuments", "RequestWorkOrderWithoutOfferDocuments", "WorkorderHistoryDocuments", "FlowHistoryDocuments" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.CoverageClarificationEnum" : {
+        "enum" : [ "CoveredWithReplacementCar", "CoveredNoReplacementCar", "Covered", "ToBecheckedBeforeStarting", "NotCovered", "NotRelevant" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.DamageCauseEnum" : {
+        "enum" : [ "ParkingDamage", "HailDamage", "GlassDamage", "Collision", "Others" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.DamagedWindowsEnum" : {
+        "enum" : [ "Front", "Side", "Rear" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.DriveTypeEnum" : {
+        "enum" : [ "Fuel", "Electric", "Hybrid" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.FaultByEnum" : {
+        "enum" : [ "Undefined", "Own", "Thirdparty", "Workorder" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.PartnerGenderEnum" : {
+        "enum" : [ "Mr", "Male", "Ms", "Mrs", "Miss", "Female" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.PartnerRoleEnum" : {
+        "enum" : [ "Customer", "OppositeParty", "ContactPerson", "ServiceReceiver" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.PartnerTypeEnum" : {
+        "enum" : [ "Person", "Company", "Administration" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.RepairOrReplacementEnum" : {
+        "enum" : [ "Repair", "Replacement" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.RequestedDeliveryEnum" : {
+        "enum" : [ "Offer", "Repair", "RepairWithExpenseCap" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.SpecialInstructionsEnum" : {
+        "enum" : [ "DocumentDamage" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.TransmissionEnum" : {
+        "enum" : [ "Automatic", "Manual" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.VatPaymentByEnum" : {
+        "enum" : [ "Customer", "Insurance" ],
+        "type" : "string"
+      },
+      "Enable.MobilityGarage.Plugin.Enums.YesNoEnum" : {
+        "enum" : [ "No", "Yes", "no", "yes" ],
+        "type" : "string"
+      },
       "Enable.MobilityGarage.Plugin.Models.Address" : {
         "type" : "object",
         "properties" : {
@@ -88,7 +150,7 @@
         "description" : "Party address which has the following sub fields."
       },
       "Enable.MobilityGarage.Plugin.Models.Case" : {
-        "required" : [ "CaseId", "Casetype", "TechnicalID" ],
+        "required" : [ "CaseId", "CaseType", "TechnicalID" ],
         "type" : "object",
         "properties" : {
           "TechnicalID" : {
@@ -99,9 +161,8 @@
             "type" : "string",
             "description" : "Gets or sets claim's data Id (schaden nr. or any other no)."
           },
-          "Casetype" : {
-            "type" : "string",
-            "description" : "Gets or sets logical identier of the case type for mapping."
+          "CaseType" : {
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.CaseTypeEnum"
           },
           "Description" : {
             "type" : "string",
@@ -145,7 +206,8 @@
             "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.OfferData"
           }
         },
-        "additionalProperties" : false
+        "additionalProperties" : false,
+        "description" : "This model contains all case detailed information to request an order."
       },
       "Enable.MobilityGarage.Plugin.Models.CaseSpecificData" : {
         "type" : "object",
@@ -187,7 +249,7 @@
             "nullable" : true
           },
           "DiscussionRequired" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.YesNoEnum"
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.YesNoEnum"
           },
           "NumberPlate" : {
             "type" : "string",
@@ -220,10 +282,10 @@
             "nullable" : true
           },
           "Transmission" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.TransmissionEnum"
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.TransmissionEnum"
           },
           "DriveType" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.DriveTypeEnum"
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.DriveTypeEnum"
           },
           "BookValue" : {
             "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.EnableMoney"
@@ -232,16 +294,16 @@
             "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.EnableMoney"
           },
           "FaultBy" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.FaultByEnum"
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.FaultByEnum"
           },
           "RequestedDelivery" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.RequestedDeliveryEnum"
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.RequestedDeliveryEnum"
           },
           "CoverageClarification" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.CoverageClarificationEnum"
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.CoverageClarificationEnum"
           },
           "AdditionalServicesBringPickupService" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.YesNoEnum"
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.YesNoEnum"
           },
           "BringPickupServicePickupLocation" : {
             "type" : "string",
@@ -249,10 +311,10 @@
             "nullable" : true
           },
           "AdditionalServicesReplacementCar" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.YesNoEnum"
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.YesNoEnum"
           },
           "SpecialInstructions" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.SpecialInstructionsEnum"
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.SpecialInstructionsEnum"
           },
           "LeasingContractEndDate" : {
             "type" : "string",
@@ -260,7 +322,18 @@
             "nullable" : true
           },
           "DamageCause" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.DamageCauseEnum"
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.DamageCauseEnum"
+          },
+          "DamagedWindows" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.DamagedWindowsEnum"
+            },
+            "description" : "Gets or sets the type of damaged windows if glass service. It can be a list of different.",
+            "nullable" : true
+          },
+          "PossibleTotalLoss" : {
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.YesNoEnum"
           },
           "Appointment" : {
             "type" : "string",
@@ -272,56 +345,20 @@
         "additionalProperties" : false,
         "description" : "Case specific data model."
       },
-      "Enable.MobilityGarage.Plugin.Models.CoverageClarificationEnum" : {
-        "enum" : [ "coveredwithreplacementcar", "coverednoreplacementcar", "covered", "tobecheckedbeforestarting", "notcovered", "notrelevant" ],
-        "type" : "string"
-      },
-      "Enable.MobilityGarage.Plugin.Models.DamageCauseEnum" : {
-        "enum" : [ "ParkingDamage", "HailDamage", "GlassDamage", "Collision", "Others" ],
-        "type" : "string"
-      },
       "Enable.MobilityGarage.Plugin.Models.Document" : {
         "required" : [ "Container", "Type" ],
         "type" : "object",
         "properties" : {
           "Container" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.Document_ContainerEnum"
-          },
-          "title" : {
-            "type" : "string",
-            "description" : "Gets or sets document title including extension.",
-            "nullable" : true
-          },
-          "extension" : {
-            "type" : "string",
-            "description" : "Gets or sets document extension according the specification.",
-            "nullable" : true
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.ContainerEnum"
           },
           "Type" : {
             "type" : "string",
             "description" : "Gets or sets valid document type according the specification.",
-            "default" : "others"
-          },
-          "contentBase64" : {
-            "type" : "string",
-            "description" : "Gets or sets contentn of document in base64 encoded form (without new line).",
-            "nullable" : true
-          },
-          "contentURL" : {
-            "type" : "string",
-            "description" : "Gets or sets content of document as a public URL. Either Enable.MobilityGarage.Plugin.Models.Document.ContentBase64 or Enable.MobilityGarage.Plugin.Models.Document.ContentURL is used. only https or http protocol URLs are supported.",
-            "nullable" : true
+            "default" : "Others"
           }
         },
         "additionalProperties" : false
-      },
-      "Enable.MobilityGarage.Plugin.Models.Document_ContainerEnum" : {
-        "enum" : [ "CaseDocuments", "OfferDocuments", "GarageDamageDocuments", "CreditDocuments", "InvoiceDocuments", "ExpenseCapDocuments", "CancelDocuments", "RequestWorkOrderWithoutOfferDocuments", "WoHistoryDocuments" ],
-        "type" : "string"
-      },
-      "Enable.MobilityGarage.Plugin.Models.DriveTypeEnum" : {
-        "enum" : [ "fuel", "electric", "hybrid" ],
-        "type" : "string"
       },
       "Enable.MobilityGarage.Plugin.Models.EnableMoney" : {
         "type" : "object",
@@ -337,15 +374,27 @@
         },
         "additionalProperties" : false
       },
-      "Enable.MobilityGarage.Plugin.Models.FaultByEnum" : {
-        "enum" : [ "undefined", "own", "thirdparty", "workorder" ],
-        "type" : "string"
+      "Enable.MobilityGarage.Plugin.Models.MaintenanceService" : {
+        "type" : "object",
+        "properties" : {
+          "LabourCost" : {
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.EnableMoney"
+          },
+          "MaterialCost" : {
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.EnableMoney"
+          },
+          "FluidCost" : {
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.EnableMoney"
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "Contains all attributes just related to maintenance service."
       },
       "Enable.MobilityGarage.Plugin.Models.OfferData" : {
         "type" : "object",
         "properties" : {
           "RepairOrReplacement" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.OfferData_RepairOrReplacementEnum"
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.RepairOrReplacementEnum"
           },
           "TotalAmountWithVat" : {
             "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.EnableMoney"
@@ -372,7 +421,7 @@
             "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.EnableMoney"
           },
           "Maintenance" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.OfferData_MaintenanceService"
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.MaintenanceService"
           },
           "OtherCosts" : {
             "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.EnableMoney"
@@ -380,42 +429,18 @@
         },
         "additionalProperties" : false
       },
-      "Enable.MobilityGarage.Plugin.Models.OfferData_MaintenanceService" : {
-        "type" : "object",
-        "properties" : {
-          "LabourCost" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.EnableMoney"
-          },
-          "MaterialCost" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.EnableMoney"
-          },
-          "FluidCost" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.EnableMoney"
-          }
-        },
-        "additionalProperties" : false
-      },
-      "Enable.MobilityGarage.Plugin.Models.OfferData_RepairOrReplacementEnum" : {
-        "enum" : [ "repair", "replacement" ],
-        "type" : "string"
-      },
       "Enable.MobilityGarage.Plugin.Models.Party" : {
         "required" : [ "PartnerRole" ],
         "type" : "object",
         "properties" : {
           "PartnerRole" : {
-            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.Party_PartnerRoleEnum"
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.PartnerRoleEnum"
           },
           "PartnerType" : {
-            "type" : "string",
-            "description" : "Gets or sets the Party type.",
-            "default" : "Person",
-            "nullable" : true
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.PartnerTypeEnum"
           },
-          "PartnerTitle" : {
-            "type" : "string",
-            "description" : "Gets or sets the party gender if the party is a Person otherwise empty.",
-            "nullable" : true
+          "PartnerGender" : {
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.PartnerGenderEnum"
           },
           "CompanyName" : {
             "type" : "string",
@@ -480,10 +505,6 @@
         "additionalProperties" : false,
         "description" : "is an involved party in a certain role and type."
       },
-      "Enable.MobilityGarage.Plugin.Models.Party_PartnerRoleEnum" : {
-        "enum" : [ "Customer", "OppositeParty", "ContactPerson", "ServiceReceiver" ],
-        "type" : "string"
-      },
       "Enable.MobilityGarage.Plugin.Models.Payment" : {
         "type" : "object",
         "properties" : {
@@ -491,18 +512,13 @@
             "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.EnableMoney"
           },
           "Deductible" : {
-            "type" : "string",
-            "description" : "Gets or sets Is there a deductable to client (Selbstbehalt?).",
-            "nullable" : true
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.YesNoEnum"
           },
           "DeductibleAmount" : {
             "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.EnableMoney"
           },
-          "VatPayment" : {
-            "type" : "string",
-            "description" : "Gets or sets Who should pay the VAT? Customer or Insurance.",
-            "default" : "Insurance",
-            "nullable" : true
+          "VatPaymentBy" : {
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.VatPaymentByEnum"
           },
           "PaymentRemarks" : {
             "type" : "string",
@@ -515,58 +531,13 @@
       },
       "Enable.MobilityGarage.Plugin.Models.Principal" : {
         "type" : "object",
-        "properties" : {
-          "accountId" : {
-            "type" : "string",
-            "description" : "Gets or sets principle account id.",
-            "nullable" : true
-          },
-          "associateId" : {
-            "type" : "string",
-            "description" : "Gets or sets associate id.",
-            "nullable" : true
-          },
-          "userId" : {
-            "type" : "string",
-            "description" : "Gets or sets user id.",
-            "nullable" : true
-          }
-        },
         "additionalProperties" : false,
         "description" : "All principle information to save / create WO automatically."
       },
       "Enable.MobilityGarage.Plugin.Models.Provider" : {
         "type" : "object",
-        "properties" : {
-          "accountId" : {
-            "type" : "string",
-            "description" : "Gets or sets provider account id.",
-            "nullable" : true
-          },
-          "associateId" : {
-            "type" : "string",
-            "description" : "Gets or sets associate id.",
-            "nullable" : true
-          }
-        },
         "additionalProperties" : false,
         "description" : "All provider reference information."
-      },
-      "Enable.MobilityGarage.Plugin.Models.RequestedDeliveryEnum" : {
-        "enum" : [ "offer", "repair", "repair_withExpenseCap" ],
-        "type" : "string"
-      },
-      "Enable.MobilityGarage.Plugin.Models.SpecialInstructionsEnum" : {
-        "enum" : [ "document-damage" ],
-        "type" : "string"
-      },
-      "Enable.MobilityGarage.Plugin.Models.TransmissionEnum" : {
-        "enum" : [ "automatic", "manual" ],
-        "type" : "string"
-      },
-      "Enable.MobilityGarage.Plugin.Models.YesNoEnum" : {
-        "enum" : [ "no", "yes" ],
-        "type" : "string"
       }
     }
   }

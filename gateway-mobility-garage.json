@@ -68,6 +68,10 @@
         "enum" : [ "Front", "Side", "Rear" ],
         "type" : "string"
       },
+      "Enable.MobilityGarage.Plugin.Enums.DocumentTypeEnum" : {
+        "enum" : [ "Photo", "Offer", "Bill", "Report", "Others", "Claimreport", "PaymentSlip", "OtherInvoice" ],
+        "type" : "string"
+      },
       "Enable.MobilityGarage.Plugin.Enums.DriveTypeEnum" : {
         "enum" : [ "Fuel", "Electric", "Hybrid" ],
         "type" : "string"
@@ -109,7 +113,7 @@
         "type" : "string"
       },
       "Enable.MobilityGarage.Plugin.Enums.YesNoEnum" : {
-        "enum" : [ "No", "Yes", "no", "yes" ],
+        "enum" : [ "No", "Yes" ],
         "type" : "string"
       },
       "Enable.MobilityGarage.Plugin.Models.Address" : {
@@ -150,10 +154,10 @@
         "description" : "Party address which has the following sub fields."
       },
       "Enable.MobilityGarage.Plugin.Models.Case" : {
-        "required" : [ "CaseId", "CaseType", "TechnicalID" ],
+        "required" : [ "CaseId", "CaseType", "ExternalSystemId" ],
         "type" : "object",
         "properties" : {
-          "TechnicalID" : {
+          "ExternalSystemId" : {
             "type" : "string",
             "description" : "Gets or sets a unique identifier for the case data record (UUID)."
           },
@@ -194,7 +198,7 @@
             "description" : "Gets or sets service description of WOHP to create.",
             "nullable" : true
           },
-          "Documents" : {
+          "documents" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Models.Document"
@@ -346,16 +350,32 @@
         "description" : "Case specific data model."
       },
       "Enable.MobilityGarage.Plugin.Models.Document" : {
-        "required" : [ "Container", "Type" ],
+        "required" : [ "Container", "Extension", "Title", "Type" ],
         "type" : "object",
         "properties" : {
           "Container" : {
             "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.ContainerEnum"
           },
-          "Type" : {
+          "Title" : {
             "type" : "string",
-            "description" : "Gets or sets valid document type according the specification.",
-            "default" : "Others"
+            "description" : "Gets or sets document title including extension."
+          },
+          "Extension" : {
+            "type" : "string",
+            "description" : "Gets or sets document extension according the specification."
+          },
+          "Type" : {
+            "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.DocumentTypeEnum"
+          },
+          "ContentBase64" : {
+            "type" : "string",
+            "description" : "Gets or sets contentn of document in base64 encoded form (without new line).",
+            "nullable" : true
+          },
+          "ContentURL" : {
+            "type" : "string",
+            "description" : "Gets or sets content of document as a public URL. Either Enable.MobilityGarage.Plugin.Models.Document.ContentBase64 or Enable.MobilityGarage.Plugin.Models.Document.ContentURL is used. only https or http protocol URLs are supported.",
+            "nullable" : true
           }
         },
         "additionalProperties" : false

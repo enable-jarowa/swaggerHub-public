@@ -1,0 +1,129 @@
+{
+    "ExternalSystemId": "950f5817-86d3-435c-941f-4b453b8f9cbb",
+    "CaseId": "18.200.200",
+    "Casetype": "Garage",
+    "Description": "Siehe Attachments",
+    "Parties": [
+        {
+            "PartnerRole": "ServiceReceiver",
+            "PartnerType": "Person",
+            "PartnerTitle": "male",
+            "FirstName": "Max",
+            "LastName": "Muster",
+            "Birthday": "01.04.1969",
+            "Nationality": "CH",
+            "CompanyName": "Company AG",
+            "Phone": "+41790000000",
+            "Mobile": "+41 44 000 00 00",
+            "Email": "max.muster@gmail.com",
+            "Address": {
+                "Country": "CH",
+                "State": "ZH",
+                "City": "Uster",
+                "Street": "Bahnhofstrasse",
+                "HouseNr": "1",
+                "Zip": "8610"
+            },
+            "PreferredLanguage": "de-CH"
+        }
+    ],
+    "SpecificCaseData": {
+        "NumberPlate": "ZH 546033",
+        "CarBrand": "Porsche",
+        "CarModel": "911 Carrera 4 Cabrio",
+        "Mileage": "147000",
+        "FirstUsage": "01.11.1992",
+        "RegistrationNumber": "3c234c234c",
+        "CarNumber": "234234",
+        "Transmission": "manual",
+        "DriveType": "fuel",
+        "DamageCause": "ParkingDamage",
+        "BookValue": {
+            "Amount": 124500.0,
+            "Currency": "CHF"
+        },
+        "TimeValue": {
+            "Amount": 90000,
+            "Currency": "CHF"
+        },
+        "Appointment": "2022-04-01T12:00:00",
+        "FaultBy": "thirdparty",
+        "PossibleTotalLoss": "no",
+        "RequestedDelivery": "offer",
+        "CoverageClarification": "coveredwithreplacementcar",
+        "AdditionalServicesBringPickupService": "yes",
+        "BringPickupServicePickupLocation": "am bahnhof in Uster",
+        "AdditionalServicesReplacementCar": "yes",
+        "Description": "zwingendes Feld für die Beschreibung des Falles",
+        "SpecialInstructions": "DocumentDamage",
+        "CaseRemarks": "das ist eine Bemerkung",
+        "LeasingContractEndDate": "01.01.2023"
+    },
+    "Offer": {
+        "RepairOrReplacement": "repair",
+        "TotalAmountWithVat": {
+            "Amount": 2000,
+            "Currency": "CHF"
+        },
+        "VATAmount": {
+            "Amount": 20,
+            "Currency": "CHF"
+        },
+        "TotalAmount": {
+            "Amount": 1980,
+            "Currency": "CHF"
+        },
+        "LabourCost": {
+            "Amount": 1000,
+            "Currency": "CHF"
+        },
+        "Maintenance": {
+            "LabourCost": {
+                "Amount": 500,
+                "Currency": "CHF"
+            },
+            "MaterialCost": {
+                "Amount": 100,
+                "Currency": "CHF"
+            },
+            "FluidCost": {
+                "Amount": 100,
+                "Currency": "CHF"
+            }
+        },
+        "SpareParts": {
+            "Amount": 100,
+            "Currency": "CHF"
+        },
+        "PaintCosts": {
+            "Amount": 100,
+            "Currency": "CHF"
+        },
+        "SmallParts": {
+            "Amount": 20,
+            "Currency": "CHF"
+        },
+        "ReplacementCarServiceCosts": {
+            "Amount": 40,
+            "Currency": "CHF"
+        },
+        "OtherCosts": {
+            "Amount": 20,
+            "Currency": "CHF"
+        }
+    },
+    "PaymentData": {
+        "Deductible": "no",
+        "DeductibleAmount": {
+            "Amount": 200,
+            "Currency": "CHF"
+        },
+        "ExpenseCap": {
+            "Amount": 1211,
+            "Currency": "CHF"
+        },
+        "VatPaymentBy": "Insurance",
+        "PaymentRemarks": "das ist eine zahlungsbemerkung"
+    },
+    "Documents": []
+}

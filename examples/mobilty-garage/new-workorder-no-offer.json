@@ -1,0 +1,72 @@
+{
+    "ExternalSystemId": "950f5817-86d3-435c-941f-4b453b8f9cbb",
+    "CaseId": "18.200.200",
+    "Casetype": "Garage",
+    "Description": "Siehe Attachments",
+    "Parties": [
+        {
+            "PartnerRole": "ServiceReceiver",
+            "PartnerType": "Person",
+            "PartnerTitle": "male",
+            "FirstName": "Max",
+            "LastName": "Muster",
+            "Birthday": "01.04.1969",
+            "Nationality": "CH",
+            "CompanyName": "Company AG",
+            "Phone": "+41790000000",
+            "Mobile": "+41 44 000 00 00",
+            "Email": "max.muster@gmail.com",
+            "Address": {
+                "Country": "CH",
+                "State": "ZH",
+                "City": "Uster",
+                "Street": "Bahnhofstrasse",
+                "HouseNr": "1",
+                "Zip": "8610"
+            },
+            "PreferredLanguage": "de-CH"
+        }
+    ],
+    "SpecificCaseData": {
+        "NumberPlate": "ZH 546033",
+        "CarBrand": "Porsche",
+        "CarModel": "911 Carrera 4 Cabrio",
+        "Mileage": "147000",
+        "FirstUsage": "01.11.1992",
+        "RegistrationNumber": "3c234c234c",
+        "CarNumber": "234234",
+        "Transmission": "manual",
+        "DriveType": "fuel",
+        "DamageCause": "ParkingDamage",
+        "BookValue": {
+            "Amount": 124500.0,
+            "Currency": "CHF"
+        },
+        "TimeValue": {
+            "Amount": 90000,
+            "Currency": "CHF"
+        },
+        "Appointment": "2022-04-01T12:00:00",
+        "FaultBy": "thirdparty",
+        "PossibleTotalLoss": "no",
+        "RequestedDelivery": "offer",
+        "CoverageClarification": "coveredwithreplacementcar",
+        "AdditionalServicesBringPickupService": "yes",
+        "BringPickupServicePickupLocation": "am bahnhof in Uster",
+        "AdditionalServicesReplacementCar": "yes",
+        "Description": "zwingendes Feld für die Beschreibung des Falles",
+        "SpecialInstructions": "DocumentDamage",
+        "CaseRemarks": "das ist eine Bemerkung",
+        "LeasingContractEndDate": "01.01.2023"
+    },
+    "PaymentData": {
+        "Deductible": "no",
+        "DeductibleAmount": {
+            "Amount": 200,
+            "Currency": "CHF"
+        },
+        "VatPaymentBy": "Insurance",
+        "PaymentRemarks": "das ist eine zahlungsbemerkung"
+    },
+    "Documents": []
+}

@@ -1,0 +1,16 @@
+{
+    "ExternalSystemId": "950f5817-86d3-435c-941f-4b453b8f9cbb",
+    "CaseId": "18.200.200",
+    "Casetype": "Garage",
+    "Parties": [
+        {
+            "PartnerType": "Person",
+            "Mobile": "+41 70 000 00 00",
+            "Email": "max.muster@gmail.com",
+            "Address": {
+                "City": "Uster",
+                "Zip": "8610"
+            }
+        }
+    ]
+}

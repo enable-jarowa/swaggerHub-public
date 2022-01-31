@@ -9,7 +9,7 @@
     "/api/v1/CaseData" : {
       "post" : {
         "tags" : [ "CaseDataStore" ],
-        "summary" : "Stores all information into a local memory storage by the key CaseData.Id.",
+        "summary" : "Stores all information into a local memory storage by the key CaseData.Id or CaseData.ExternalSystemId.",
         "requestBody" : {
           "description" : "prefilling data passed from AXA.",
           "content" : {

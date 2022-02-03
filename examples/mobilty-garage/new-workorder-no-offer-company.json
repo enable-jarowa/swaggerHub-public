@@ -31,9 +31,10 @@
         "Mileage": "147000",
         "FirstUsage": "01.11.1992",
         "RegistrationNumber": "3c234c234c",
+        "TypeCertificateNumber": "1231231321",
         "CarNumber": "234234",
-        "Transmission": "manual",
-        "DriveType": "fuel",
+        "Transmission": "Manual",
+        "DriveType": "Fuel",
         "DamageCause": "ParkingDamage",
         "BookValue": {
             "Amount": 124500.0,
@@ -45,19 +46,19 @@
         },
         "Appointment": "2022-04-01T12:00:00",
         "FaultBy": "Thirdparty",
-        "PossibleTotalLoss": "no",
-        "RequestedDelivery": "offer",
-        "CoverageClarification": "coveredwithreplacementcar",
-        "AdditionalServicesBringPickupService": "yes",
+        "PossibleTotalLoss": "No",
+        "RequestedDelivery": "Offer",
+        "CoverageClarification": "CoveredWithReplacementCar",
+        "AdditionalServicesBringPickupService": "Yes",
         "BringPickupServicePickupLocation": "am bahnhof in Uster",
-        "AdditionalServicesReplacementCar": "yes",
+        "AdditionalServicesReplacementCar": "Yes",
         "Description": "zwingendes Feld für die Beschreibung des Falles",
         "SpecialInstructions": "DocumentDamage",
         "CaseRemarks": "das ist eine Bemerkung",
         "LeasingContractEndDate": "01.01.2023"
     },
     "PaymentData": {
-        "Deductible": "no",
+        "Deductible": "Yes",
         "DeductibleAmount": {
             "Amount": 200,
             "Currency": "CHF"

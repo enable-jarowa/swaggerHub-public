@@ -1,13 +1,15 @@
 {
     "ExternalSystemId": "950f5817-86d3-435c-941f-4b453b8f9cbb",
     "CaseId": "18.200.200",
+    "CaseIdInsurer": "18.200.200",
+    "CaseIdOppositeParty": "4711",
     "Casetype": "Garage",
     "Description": "Siehe Attachments",
     "Parties": [
         {
             "PartnerRole": "ServiceReceiver",
             "PartnerType": "Person",
-            "PartnerTitle": "male",
+            "PartnerTitle": "Male",
             "FirstName": "Max",
             "LastName": "Muster",
             "Birthday": "01.04.1969",
@@ -24,6 +26,7 @@
                 "HouseNr": "1",
                 "Zip": "8610"
             },
+            "Availability": "der Kunde ist nur am abend erreichbar",
             "PreferredLanguage": "de-CH"
         }
     ],
@@ -34,11 +37,15 @@
         "Mileage": "147000",
         "FirstUsage": "01.11.1992",
         "RegistrationNumber": "3c234c234c",
-        "TypeCertificateNumber": "1231231321",
         "CarNumber": "234234",
-        "Transmission": "Manual",
+        "TypeCertificateNumber": "1231231321",
+        "Transmission": "Automatic",
         "DriveType": "Fuel",
         "DamageCause": "ParkingDamage",
+        "DamagedWindows": [
+            "Rear",
+            "Front"
+        ],
         "BookValue": {
             "Amount": 124500.0,
             "Currency": "CHF"
@@ -48,7 +55,7 @@
             "Currency": "CHF"
         },
         "Appointment": "2022-04-01T12:00:00",
-        "FaultBy": "Thirdparty",
+        "FaultBy": "ThirdParty",
         "PossibleTotalLoss": "No",
         "RequestedDelivery": "Offer",
         "CoverageClarification": "CoveredWithReplacementCar",
@@ -64,6 +71,10 @@
         "Deductible": "Yes",
         "DeductibleAmount": {
             "Amount": 200,
+            "Currency": "CHF"
+        },
+        "ExpenseCap": {
+            "Amount": 1211,
             "Currency": "CHF"
         },
         "VatPaymentBy": "Insurance",

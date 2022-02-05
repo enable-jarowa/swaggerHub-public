@@ -1,6 +1,8 @@
 {
     "ExternalSystemId": "950f5817-86d3-435c-941f-4b453b8f9cbb",
     "CaseId": "18.200.200",
+    "CaseIdInsurer": "18.200.200",
+    "CaseIdOppositeParty": "4711",
     "Casetype": "Garage",
     "Description": "Siehe Attachments",
     "Parties": [
@@ -24,6 +26,7 @@
                 "HouseNr": "1",
                 "Zip": "8610"
             },
+            "Availability": "der Kunde ist nur am abend erreichbar",
             "PreferredLanguage": "de-CH"
         }
     ],
@@ -34,11 +37,15 @@
         "Mileage": "147000",
         "FirstUsage": "01.11.1992",
         "RegistrationNumber": "3c234c234c",
-        "TypeCertificateNumber": "1231231321",
         "CarNumber": "234234",
-        "Transmission": "Manual",
+        "TypeCertificateNumber": "1231231321",
+        "Transmission": "Automatic",
         "DriveType": "Fuel",
         "DamageCause": "ParkingDamage",
+        "DamagedWindows": [
+            "Rear",
+            "Front"
+        ],
         "BookValue": {
             "Amount": 124500.0,
             "Currency": "CHF"

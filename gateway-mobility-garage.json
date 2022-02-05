@@ -3,7 +3,7 @@
   "info" : {
     "title" : "Mobility Garage Gateway API",
     "description" : "This API is used to integrate garage software provider with JAROWA ENAB.LE platform via a gateway.",
-    "version" : "1.0"
+    "version" : "1.1"
   },
   "paths" : {
     "/api/v1/CaseData" : {
@@ -77,7 +77,7 @@
         "type" : "string"
       },
       "Enable.MobilityGarage.Plugin.Enums.FaultByEnum" : {
-        "enum" : [ "Undefined", "Own", "Thirdparty", "Workorder" ],
+        "enum" : [ "Undefined", "Own", "ThirdParty", "Workorder" ],
         "type" : "string"
       },
       "Enable.MobilityGarage.Plugin.Enums.PartnerGenderEnum" : {
@@ -164,6 +164,16 @@
           "CaseId" : {
             "type" : "string",
             "description" : "Gets or sets claim's data Id (schaden nr. or any other no)."
+          },
+          "CaseIdInsurer" : {
+            "type" : "string",
+            "description" : "Gets or sets case id of insurer.",
+            "nullable" : true
+          },
+          "CaseIdOppositeParty" : {
+            "type" : "string",
+            "description" : "Gets or sets case id of insurer.",
+            "nullable" : true
           },
           "CaseType" : {
             "$ref" : "#/components/schemas/Enable.MobilityGarage.Plugin.Enums.CaseTypeEnum"
@@ -283,6 +293,16 @@
           "RegistrationNumber" : {
             "type" : "string",
             "description" : "Gets or sets the car registration number (VIN).",
+            "nullable" : true
+          },
+          "TypeCertificateNumber" : {
+            "type" : "string",
+            "description" : "Gets or sets the TypeCertificateNumber.",
+            "nullable" : true
+          },
+          "CarNumber" : {
+            "type" : "string",
+            "description" : "Gets or sets the internal car number.",
             "nullable" : true
           },
           "Transmission" : {

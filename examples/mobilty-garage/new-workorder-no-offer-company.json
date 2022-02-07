@@ -9,8 +9,6 @@
         {
             "PartnerRole": "ServiceReceiver",
             "PartnerType": "Company",
-            "Birthday": "01.04.1969",
-            "Nationality": "CH",
             "CompanyName": "Company AG",
             "Phone": "+41790000000",
             "Mobile": "+41 44 000 00 00",
